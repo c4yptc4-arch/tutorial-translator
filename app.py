@@ -379,4 +379,5 @@ def download():
 if __name__ == "__main__":
     print("\n🎬  Tutorial Translator UI")
     print("   Open → http://localhost:5050\n")
-    app.run(host="0.0.0.0", port=5050, debug=False)
+    port = int(os.environ.get("PORT", 5050))
+    app.run(host="0.0.0.0", port=port, debug=False)
