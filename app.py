@@ -381,3 +381,4 @@ if __name__ == "__main__":
     print("   Open → http://localhost:5050\n")
     port = int(os.environ.get("PORT", 5050))
     app.run(host="0.0.0.0", port=port, debug=False)
+# PORT fix
