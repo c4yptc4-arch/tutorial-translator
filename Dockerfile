@@ -1,15 +1,14 @@
 FROM python:3.11-slim
 
-# Install ffmpeg
 RUN apt-get update && apt-get install -y ffmpeg && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-# Install Python deps
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt gunicorn
 
 COPY . .
 
-EXPOSE ${PORT:-5050}
-CMD ["python", "app.py"]
+EXPOSE 8080
+
+CMD gunicorn --bind 0.0.0.0:${PORT:-8080} --timeout 0 --workers 1 app:app
